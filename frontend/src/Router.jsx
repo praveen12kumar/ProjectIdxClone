@@ -6,7 +6,7 @@ const Router = () => {
   return (
     <Routes>
         <Route path='/' element={<CreateProject/>}/>
-        <Router path='/project/:projectId' element={<ProjectPlayground/>}/>
+        <Route path='/project/:projectId' element={<ProjectPlayground/>}/>
     </Routes>
   )
 }
