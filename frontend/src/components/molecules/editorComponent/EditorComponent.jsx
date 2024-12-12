@@ -9,7 +9,6 @@ function EditorComponent () {
     const downloadTheme = async()=>{
         const response = await fetch("/Monokai.json");
         const data = await response.json();
-        console.log(data);
         setEditorState({...editorState, theme:data});
     }
 
