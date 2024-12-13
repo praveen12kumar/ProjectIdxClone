@@ -4,12 +4,11 @@ import FileIcon from '../../atoms/fileIcon/FileIcon';
 
 
 const TreeNode = ({fileFolderData}) => {
-     console.log("fileFolder data",fileFolderData);
-    
+     //console.log("fileFolderData", fileFolderData);
+     
     const [visibility, setVisibility] = useState({})
     
     function toggleVisibility(name){
-        console.log(name);
         setVisibility({
             ...visibility,
             [name]: !visibility[name]

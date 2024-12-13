@@ -7,11 +7,14 @@ import { useTreeStructureStore } from '../store/treeStructureStore';
 
 const ProjectPlayground = () => {
     const {projectId: projectIdFromUrl} = useParams();
-
-    const {projectId,setProjectId} = useTreeStructureStore();
+    
+    
+    const {projectId, setProjectId} = useTreeStructureStore();
 
     useEffect(()=>{
-      setProjectId(projectIdFromUrl);
+      if(projectIdFromUrl){
+        setProjectId(projectIdFromUrl);
+      }
     },[setProjectId, projectIdFromUrl]);
 
 
@@ -22,13 +25,14 @@ const ProjectPlayground = () => {
         <h1 className='text-xs text-white font-source px-2 py-1'><span className='font-medium text-sm font-poppins'>Project:</span> {projectIdFromUrl}</h1>
         
         <div className="w-1/5 h-full flex items-center bg-slate-900">
-
-          <TreeStructure/>
-         
+          {
+           projectId && <TreeStructure/>
+          }
+ 
         </div>
-        
-        
-        
+        <div className="w-4/5 h-full">
+        <EditorComponent/>
+        </div>        
     </div>
   )
 }

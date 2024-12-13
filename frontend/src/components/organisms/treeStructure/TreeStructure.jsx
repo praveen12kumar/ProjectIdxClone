@@ -7,7 +7,7 @@ const TreeStructure = () => {
    
     useEffect(()=>{
         if(treeStructure){
-            console.log("treeStructure",treeStructure);
+            //console.log("tree: ",treeStructure);
         }
         else{
             setTreeStructure();
