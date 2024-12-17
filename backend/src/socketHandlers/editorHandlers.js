@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 
-export const handleEditoSocketEvent = (socket)=>{
+export const handleEditorSocketEvent = (socket)=>{
     // update file event
     socket.on("writeFile", async({data, pathToFileOrFolder})=>{
        try {
@@ -43,9 +43,13 @@ export const handleEditoSocketEvent = (socket)=>{
 
     socket.on("readFile", async({pathToFileOrFolder})=>{
         try {
-            const response = await fs.readFile(pathToFileOrFolder, "utf-8");
+            //console.log("reading file", pathToFileOrFolder);
+            const response = await fs.readFile(pathToFileOrFolder);
+            //console.log("response", response.toString());
+            
             socket.emit("readFileSuccess",{
-                data: response.toString()
+                value: response.toString(),
+                path: pathToFileOrFolder,
             });
         } catch (error) {
             console.log("Error reading file", error);
@@ -68,6 +72,22 @@ export const handleEditoSocketEvent = (socket)=>{
             console.log("Error deleting file", error);
             socket.emit("error", {
                 data:"Error deleting file"
+            })
+        }
+    })
+
+    // rename file event
+
+    socket.on("renameFile", async({pathToFileOrFolder, newName})=>{
+        try {
+            await fs.rename(pathToFileOrFolder, newName);
+            socket.emit("renameFileSuccess",{
+                data:"File renamed successfully"
+            });
+        } catch (error) {
+            console.log("Error renaming file", error);
+            socket.emit("error", {
+                data:"Error renaming file"
             })
         }
     })
@@ -101,6 +121,21 @@ export const handleEditoSocketEvent = (socket)=>{
             console.log("Error deleting folder", error);
             socket.emit("error", {
                 data:"Error deleting folder"
+            })
+        }
+    })
+
+    // rename folder event
+    socket.on('renameFolder', async({pathToFileOrFolder, newName})=>{
+        try {
+            await fs.rename(pathToFileOrFolder, newName);
+            socket.emit("renameFolderSuccess",{
+                data:"Folder renamed successfully"
+            });
+        } catch (error) {
+            console.log("Error renaming folder", error);
+            socket.emit("error", {
+                data:"Error renaming folder"
             })
         }
     })

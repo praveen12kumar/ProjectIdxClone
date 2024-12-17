@@ -6,7 +6,7 @@ import { FaCss3, FaHtml5, FaNodeJs } from "react-icons/fa";
 
 
 const FileIcon = ({extension}) => {
-  console.log("extension", extension);
+  //console.log("extension", extension);
   const iconStyle = "w-5 h-5 mr-1 hover:opacity-90 transition-all ease-in-out duration-300";
   const IconMapper = {
         "js": <FaSquareJs className={` text-yellow-500 ${iconStyle} `} />,
