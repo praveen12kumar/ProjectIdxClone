@@ -52,18 +52,15 @@ editorNamespace.on("connection", (socket)=>{
 
         });
 
-        watcher.on("all", (event, path)=>{
-            console.log("file changed", event, path);
-        });
+        // watcher.on("all", (event, path)=>{
+        //     console.log("file changed", event, path);
+        // });
     }
     
     // socket provides an event handler like DOM events, here "message" is an event
-   handleEditorSocketEvent(socket);
+   handleEditorSocketEvent(socket, editorNamespace);
 
-    socket.on("disconnect", async()=>{
-        await watcher?.close();
-        console.log("close editor disconnected");
-    });
+    
     
 });
 

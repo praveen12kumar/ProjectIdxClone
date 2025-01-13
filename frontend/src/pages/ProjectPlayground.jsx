@@ -9,7 +9,7 @@ import {io} from "socket.io-client";
 
 const ProjectPlayground = () => {
     const {projectId: projectIdFromUrl} = useParams();
-    console.log("ProjectId", projectIdFromUrl);
+    //console.log("ProjectId", projectIdFromUrl);
 
     const {projectId, setProjectId} = useTreeStructureStore();
 
